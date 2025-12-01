@@ -24,7 +24,7 @@ class TransactionViewSet(viewsets.ModelViewSet):
         """
 
         # Pega todas as transações
-        queryset = Transaction.objects.filter(user=self.request.user).order_by('-date')
+        queryset = Transaction.objects.filter(user=self.request.user).order_by('-date', '-id')
 
         # Preciso pegar os parâmetros que vieram na URL
         params = getattr(self.request, 'query_params', self.request.GET)

@@ -2,9 +2,13 @@
 
 const API_URL = 'http://127.0.0.1:8000/api/transactions/';
 
-const USER_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0NTk4MDE5LCJpYXQiOjE3NjQ1OTQ0MTksImp0aSI6Ijc2ODliMzgwN2Y4YzQ1YjlhMGQ4NmUxNmI5NWMxNTk3IiwidXNlcl9pZCI6IjEifQ.SfB0rUgpVlE4j7Oclp0lNe3DmmOUSZ6RqJGvkBKBRGE"
+const USER_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0NjAwNDA3LCJpYXQiOjE3NjQ1OTY4MDcsImp0aSI6IjkwOGI0ZGU5MjgxMTRiMjlhOTE3MzdmMGY5MmIwZDdiIiwidXNlcl9pZCI6IjEifQ.K12J2Pj9gZvJTk4UopDdULgOuBHsyWuejnx2uIBSWkc"
 
 let currentTransactions = [];
+
+// VARIÁVEIS DE PAGINAÇÃO
+let nextPageUrl = null;
+let prevPageUrl = null;
 
 // SELETORES DO DOM
 
@@ -13,6 +17,9 @@ const THEME_SWITCHER_BTN = document.getElementById('theme-switcher');
 const FORM = document.getElementById('transaction-form');
 const SEARCH_INPUT = document.getElementById('search-filter');
 const SORT_SELECT = document.getElementById('sort-order');
+const PREV_BTN = document.getElementById('prev-btn');
+const NEXT_BTN = document.getElementById('next-btn');
+const PAGE_INFO = document.getElementById('page-info');
 
 // FUNÇÕES AUXILIARES 
 
@@ -105,10 +112,14 @@ function saveToLocalStorage() {
     localStorage.setItem('transactions', JSON.stringify(currentTransactions));
 }
 
-async function loadTransactions() {
+async function loadTransactions(url = null) {
+
+    const fetchUrl = url || `${API_URL}`;
+
+    console.log("Tentando carregar:", fetchUrl);
+    
     try {
         const response = await fetch('http://127.0.0.1:8000/api/transactions/', {
-            // Se tiver autenticação, lembre do Header aqui:
             headers: {
                 'Authorization': `Bearer ${USER_TOKEN}`,
                 'Content-Type': 'application/json'
@@ -120,6 +131,15 @@ async function loadTransactions() {
         // Se tiver paginação (results), usa o results. Se não, usa o data direto.
         if (data.results) {
             currentTransactions = data.results;
+
+            nextPageUrl = data.next;
+            prevPageUrl = data.previous
+
+            // Atualiza os botões
+            updatePaginationButtons();
+
+            // Atualiza o texto "Página X"
+            updatePageNumber(fetchUrl, data.count);
         } else {
             currentTransactions = data;
         }
@@ -176,6 +196,34 @@ function updateDisplay(elementId, value) {
                 element.style.color = ''; 
             }
         }
+    }
+}
+
+function updatePaginationButtons() {
+    // Se tiver link 'previous', habilita o botão. Senão, desabilita.
+    PREV_BTN.disabled = !prevPageUrl;
+    
+    // Se tiver link 'next', habilita o botão. Senão, desabilita.
+    NEXT_BTN.disabled = !nextPageUrl;
+}
+
+function updatePageNumber(currentUrl, totalCount) {
+
+    // Evita erro se a URL for nula
+    if (!currentUrl) return;
+    
+    const urlObj = new URL(currentUrl);
+    const pageParam = urlObj.searchParams.get('page');
+    
+    // Se não tem ?page=, é a página 1
+    const currentPage = pageParam ? pageParam : 1;
+    
+    // Calcula o total de páginas (Total de itens / 10 por página)
+    const totalPages = Math.ceil(totalCount / 10);
+
+    const pageInfoElement = document.getElementById('page-info');
+    if (pageInfoElement) {
+        pageInfoElement.innerText = `Página ${currentPage} de ${totalPages}`;
     }
 }
 
@@ -251,6 +299,23 @@ LIST_ELEMENT.addEventListener('click', async (event) => {
 
     } catch (error) {
         console.error('Erro ao excluir:', error);
+    }
+});
+
+// Eventos dos botões de paginação
+
+PREV_BTN.addEventListener('click', () => {
+    if (prevPageUrl) {
+        loadTransactions(prevPageUrl); // Carrega a URL anterior
+        // Rola a tela para o topo da lista suavemente
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+});
+
+NEXT_BTN.addEventListener('click', () => {
+    if (nextPageUrl) {
+        loadTransactions(nextPageUrl); // Carrega a próxima URL
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 });
 
