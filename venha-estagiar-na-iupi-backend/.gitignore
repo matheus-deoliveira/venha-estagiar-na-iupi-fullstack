@@ -1,0 +1,21 @@
+# Ignorar Arquivos Compilados
+__pycache__/
+*.py[cod]
+
+# Ignorar Banco de Dados Local
+db.sqlite3
+
+# Ignorar Ambiente Virtual
+venv/
+env/
+
+# Ignorar Variáveis de Ambiente
+.env
+
+# Ignorar Frontend/Node
+node_modules/
+
+# Ignorar arquivos de sistema e IDEs
+.vscode/
+.idea/
+.DS_Store

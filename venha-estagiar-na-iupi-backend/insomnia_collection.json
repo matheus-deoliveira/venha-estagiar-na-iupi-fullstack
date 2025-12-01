@@ -1,0 +1,307 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Desafio IUPI - Matheus de Oliveira Lima
+meta:
+  id: wrk_d8492671bf5f46b6a1faa73a37d478fb
+  created: 1764341305401
+  modified: 1764341995439
+  description: ""
+collection:
+  - url: http://127.0.0.1:8000/api/transactions/
+    name: Criar Transação
+    meta:
+      id: req_581ac07ca7114eae87c35dec9afc9b19
+      created: 1764341305432
+      modified: 1764374454379
+      isPrivate: false
+      description: ""
+      sortKey: -1764361481730.5
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "description": "Salário Mensal 3",
+          "amount": 5500.00,
+          "type": "income",
+          "date": "2023-11-01"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.1.0
+        description: ""
+        disabled: false
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0Mzc2NDAyLCJpYXQiOjE3NjQzNzI4MDIsImp0aSI6Ijk3ODE3NTNhMzVlYzQzYTk5NDdiNTA0MmY0ZDI2NjZmIiwidXNlcl9pZCI6IjEifQ.GAkV_Ik4j0MP_X5HH2OoMhgSj0gw06aNcaCaEbG9Acg
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://127.0.0.1:8000/api/transactions/
+    name: Listar Transações (Filtro)
+    meta:
+      id: req_4a5e27e8cb844174a4a2bf2771e3b678
+      created: 1764341476297
+      modified: 1764374539729
+      isPrivate: false
+      description: ""
+      sortKey: -1764341476297
+    method: GET
+    parameters:
+      - name: type
+        value: ""
+        description: ""
+        disabled: false
+      - name: description
+        value: ""
+        description: ""
+        disabled: false
+      - name: page
+        value: ""
+        description: ""
+        disabled: false
+    headers:
+      - name: User-Agent
+        value: insomnia/12.1.0
+        description: ""
+        disabled: false
+    authentication:
+      type: bearer
+      disabled: false
+      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0Mzc2NDAyLCJpYXQiOjE3NjQzNzI4MDIsImp0aSI6Ijk3ODE3NTNhMzVlYzQzYTk5NDdiNTA0MmY0ZDI2NjZmIiwidXNlcl9pZCI6IjEifQ.GAkV_Ik4j0MP_X5HH2OoMhgSj0gw06aNcaCaEbG9Acg
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://127.0.0.1:8000/api/transactions/3/
+    name: Transação Específica
+    meta:
+      id: req_e1ea5cf2d008475f99cfa139f9bac3b6
+      created: 1764341809409
+      modified: 1764374483851
+      isPrivate: false
+      description: ""
+      sortKey: -1764349099660.625
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.1.0
+        description: ""
+        disabled: false
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0Mzc2NDAyLCJpYXQiOjE3NjQzNzI4MDIsImp0aSI6Ijk3ODE3NTNhMzVlYzQzYTk5NDdiNTA0MmY0ZDI2NjZmIiwidXNlcl9pZCI6IjEifQ.GAkV_Ik4j0MP_X5HH2OoMhgSj0gw06aNcaCaEbG9Acg
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://127.0.0.1:8000/api/transactions/3/
+    name: Atualizar Transação
+    meta:
+      id: req_9bdc748195ac4ee685c39da04e5159cf
+      created: 1764342016782
+      modified: 1764374462042
+      isPrivate: false
+      description: ""
+      sortKey: -1764349710730
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "description": "Salário Mensal Atualizado",
+          "amount": 3500.00,
+          "type": "income",
+          "date": "2023-12-01"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.1.0
+        description: ""
+        disabled: false
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0Mzc2NDAyLCJpYXQiOjE3NjQzNzI4MDIsImp0aSI6Ijk3ODE3NTNhMzVlYzQzYTk5NDdiNTA0MmY0ZDI2NjZmIiwidXNlcl9pZCI6IjEifQ.GAkV_Ik4j0MP_X5HH2OoMhgSj0gw06aNcaCaEbG9Acg
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://127.0.0.1:8000/api/transactions/2/
+    name: Atualização Parcial Transação
+    meta:
+      id: req_1cc0de98e02a4c0d92df817c0999089a
+      created: 1764345982019
+      modified: 1764374465204
+      isPrivate: false
+      description: ""
+      sortKey: -1764349361547.5
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "amount": 4500.00
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.1.0
+        description: ""
+        disabled: false
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0Mzc2NDAyLCJpYXQiOjE3NjQzNzI4MDIsImp0aSI6Ijk3ODE3NTNhMzVlYzQzYTk5NDdiNTA0MmY0ZDI2NjZmIiwidXNlcl9pZCI6IjEifQ.GAkV_Ik4j0MP_X5HH2OoMhgSj0gw06aNcaCaEbG9Acg
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://127.0.0.1:8000/api/transactions/1/
+    name: Deletar Transação
+    meta:
+      id: req_5f41617c6802408681f9f9aa3c4ddb8f
+      created: 1764346182247
+      modified: 1764374474286
+      isPrivate: false
+      description: ""
+      sortKey: -1764349186956.25
+    method: DELETE
+    headers:
+      - name: User-Agent
+        value: insomnia/12.1.0
+        description: ""
+        disabled: false
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0Mzc2NDAyLCJpYXQiOjE3NjQzNzI4MDIsImp0aSI6Ijk3ODE3NTNhMzVlYzQzYTk5NDdiNTA0MmY0ZDI2NjZmIiwidXNlcl9pZCI6IjEifQ.GAkV_Ik4j0MP_X5HH2OoMhgSj0gw06aNcaCaEbG9Acg
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://127.0.0.1:8000/api/summary/
+    name: Resumo Financeiro
+    meta:
+      id: req_abb09e3f0b4b4cb683dbd0c1f2fd0f16
+      created: 1764349012365
+      modified: 1764373302316
+      isPrivate: false
+      description: ""
+      sortKey: -1764349012365
+    method: GET
+    headers:
+      - name: User-Agent
+        value: insomnia/12.1.0
+        description: ""
+        disabled: false
+    authentication:
+      type: bearer
+      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0Mzc2NDAyLCJpYXQiOjE3NjQzNzI4MDIsImp0aSI6Ijk3ODE3NTNhMzVlYzQzYTk5NDdiNTA0MmY0ZDI2NjZmIiwidXNlcl9pZCI6IjEifQ.GAkV_Ik4j0MP_X5HH2OoMhgSj0gw06aNcaCaEbG9Acg
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://127.0.0.1:8000/api/populate/
+    name: Popular Banco de Dados
+    meta:
+      id: req_abc8399b5f3747f7bc31e24319c7c9af
+      created: 1764350409095
+      modified: 1764372989075
+      isPrivate: false
+      description: ""
+      sortKey: -1764350409095
+    method: POST
+    headers:
+      - name: User-Agent
+        value: insomnia/12.1.0
+        description: ""
+        disabled: false
+    authentication:
+      type: bearer
+      disabled: false
+      token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0Mzc2NDAyLCJpYXQiOjE3NjQzNzI4MDIsImp0aSI6Ijk3ODE3NTNhMzVlYzQzYTk5NDdiNTA0MmY0ZDI2NjZmIiwidXNlcl9pZCI6IjEifQ.GAkV_Ik4j0MP_X5HH2OoMhgSj0gw06aNcaCaEbG9Acg
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://127.0.0.1:8000/login/
+    name: Login
+    meta:
+      id: req_0e83288ac76549d0885275c2aaca2a87
+      created: 1764372554366
+      modified: 1764372584485
+      isPrivate: false
+      description: ""
+      sortKey: -1764372554366
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+            "username": "admin",
+            "password": "admin"
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.1.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_7f07a1cf89c41baec348d12d0c55bc6597419f7a
+    created: 1764341305413
+    modified: 1764341305413
+environments:
+  name: Base Environment
+  meta:
+    id: env_7f07a1cf89c41baec348d12d0c55bc6597419f7a
+    created: 1764341305408
+    modified: 1764341305408
+    isPrivate: false
